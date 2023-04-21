@@ -1,0 +1,15 @@
+.btn-themeswitch {
+  transition: all 268ms ease-in-out 0s;
+}
+
+.is--lightmode {
+  background-color: floralwhite;
+  color: #333;
+}
+
+.is--darkmode {
+  background-color: #333;
+  color: floralwhite;
+
+  transform: translateX(50vw);
+}
