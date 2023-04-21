@@ -1,12 +1,17 @@
-import './App.css';
-import { Greeting, Student }  from './components';
-
 // Import custom modules
+import { DigitalClock, Greeting, Student }  from './components';
+
+// Data
 import StudentsData from './data/students.json';
+
+// Styling
+import './App.css';
 
 function App() {
   return (
     <div className="app">
+      <DigitalClock />
+      
       <Greeting message='Hello World' />
       <Greeting message="It's me Mario" />
       <Greeting message='Eid mubarak' />
@@ -14,6 +19,8 @@ function App() {
       <Student fullName={`Sandy Barby`} avatarUrl={`https://api.multiavatar.com/Sandy Barby.png`} />
 
       { StudentsData && StudentsData.results.map((student, index) => <Student key={index} fullName={`${student.name.first} ${student.name.last}`} avatarUrl={`${student.picture.large}`} />) }
+
+      
     </div>
   );
 }
