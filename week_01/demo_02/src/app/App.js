@@ -13,7 +13,7 @@ function App() {
       <Student fullName={`Philippe Shady`} avatarUrl={`https://api.multiavatar.com/Philippe Shady.png`} />
       <Student fullName={`Sandy Barby`} avatarUrl={`https://api.multiavatar.com/Sandy Barby.png`} />
 
-      { StudentsData && StudentsData.results.map((student, index) => <p key={index}>STUDENT { (index + 1) }</p>) }
+      { StudentsData && StudentsData.results.map((student, index) => <Student key={index} fullName={`${student.name.first} ${student.name.last}`} avatarUrl={`${student.picture.large}`} />) }
     </div>
   );
 }
