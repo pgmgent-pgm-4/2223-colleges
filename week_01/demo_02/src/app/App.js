@@ -1,5 +1,5 @@
 // Import custom modules
-import { DigitalClock, Greeting, Student }  from './components';
+import { DigitalClock, Greeting, Student, ThemeSwitch }  from './components';
 
 // Data
 import StudentsData from './data/students.json';
@@ -10,8 +10,9 @@ import './App.css';
 function App() {
   return (
     <div className="app">
+      <ThemeSwitch />
       <DigitalClock />
-      
+
       <Greeting message='Hello World' />
       <Greeting message="It's me Mario" />
       <Greeting message='Eid mubarak' />
