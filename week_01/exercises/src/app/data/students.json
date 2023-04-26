@@ -1,0 +1,18 @@
+[
+    {
+        "id": "1",
+        "firstName": "Philippe",
+        "lastName": "De Pauw - Waterschoot",
+        "genderCode": 1,
+        "dayOfBirth": 440066292000,
+        "courses": [
+            {
+                "name": "Programming 4",
+                "lecturers": [
+                    "Philippe De Pauw - Waterschoot",
+                    "Dieter De Weirdt"
+                ]
+            }
+        ]
+    }
+]

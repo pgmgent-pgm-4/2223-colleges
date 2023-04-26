@@ -16,6 +16,7 @@ const ThemeMode = () => {
 
   const handleLink = (ev) => {
     ev.preventDefault();
+    
   };
 
   return (

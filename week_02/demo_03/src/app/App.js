@@ -1,13 +1,20 @@
+// Import custom modules
+import { Clock, ThemeMode } from './components';
+import { TagCloud } from './components/tags';
+
+// Data
+import tagCloudData from './data/tag-cloud.json';
+
 // Styling
 import './App.css';
-import { Clock, ThemeMode } from './components';
 
 function App() {
   return (
     <div className="App">
-      <ThemeMode />
+      <TagCloud data={tagCloudData} />
+      {/* <ThemeMode />
       <Clock city={`Ghent`} utc={1} />
-      <Clock city={`New York`} utc={-6} />
+      <Clock city={`New York`} utc={-6} /> */}
     </div>
   );
 }
