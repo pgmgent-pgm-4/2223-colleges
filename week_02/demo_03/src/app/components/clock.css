@@ -1,0 +1,14 @@
+.digital-clock {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  background-color: #fff;
+  color: #000;
+}
+
+.is--darkmode .digital-clock {
+  background-color: #000;
+  color: #fff;
+}
