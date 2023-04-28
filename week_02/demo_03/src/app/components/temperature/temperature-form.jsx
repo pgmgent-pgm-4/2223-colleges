@@ -8,9 +8,8 @@ const TemperatureForm = ({ temp, scale, onTemperatureChange }) => {
   }, [temp]);
 
   const handleOnChange = (ev) => {
-    setTemperature(ev.target.value);
     if(typeof onTemperatureChange === 'function') {
-      onTemperatureChange(temperature, scale);
+      onTemperatureChange(ev.target.value, scale);
     }
   }
 
