@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { ROUTES } from '../../routes';
 
 
-const PostListItem = ({id, post, className}) => {
+const PostListGridItem = ({id, post, className}) => {
   return (
     <div className={`${className}`}>
       <article className={`card`}>
@@ -20,4 +20,4 @@ const PostListItem = ({id, post, className}) => {
   )
 };
 
-export default PostListItem;
+export default PostListGridItem;
