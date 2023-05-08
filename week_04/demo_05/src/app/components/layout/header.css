@@ -1,0 +1,3 @@
+.header {
+  background-image: linear-gradient(rgba(var(--bd-violet-rgb), 1), rgba(var(--bd-violet-rgb), 0.95));
+}
