@@ -18,7 +18,6 @@ const Header = () => {
             <NavBar />
             <NavUser className="d-flex" />
           </div>
-          
         </div>
       </div>
     </header>

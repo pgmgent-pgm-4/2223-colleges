@@ -18,7 +18,6 @@ const PostDetailsPage = () => {
     if (data !== null) {
       setPost(data.articles[postId]);
     }
-    
   }, [data, postId]);
 
   return (
