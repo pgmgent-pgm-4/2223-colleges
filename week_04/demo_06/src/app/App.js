@@ -7,20 +7,24 @@ import { ROUTES } from './routes';
 
 // Import styling
 import './App.css';
-import { ThemeToggle } from './components';
+import { Navigation, ThemeToggle } from './components';
 import { ThemeProvider } from './contexts/theme.context';
+import { UserProvider } from './contexts/user.context';
 
 function App() {
   return (
     <div className="app">
-      <ThemeProvider>
-        <ThemeToggle />
-        <main>
-          <Routes>
-            <Route path={ROUTES.Home} element={<HomePage />} />
-          </Routes>
-        </main>
-      </ThemeProvider>
+      <UserProvider>
+        <ThemeProvider>
+          <Navigation />
+          <ThemeToggle />
+          <main>
+            <Routes>
+              <Route path={ROUTES.Home} element={<HomePage />} />
+            </Routes>
+          </main>
+        </ThemeProvider>
+      </UserProvider>
     </div>
   );
 }
