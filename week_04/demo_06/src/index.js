@@ -9,6 +9,9 @@ import reportWebVitals from './reportWebVitals';
 import './index.scss';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
+// Mapbox
+import 'mapbox-gl/dist/mapbox-gl.css';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
