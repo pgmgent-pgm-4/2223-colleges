@@ -9,18 +9,27 @@ import { PostDetailsComponent } from '../components/posts';
 
 // GraphQL queries
 const POST = gql`
-query GetPostById($id: ID!) {
-  post(where: {id: $id}) {
-    title
+query GetPostById ($postId: ID!) {
+  post(where: {id: $postId}) {
     id
+    title
+    synopsis
     body {
       html
     }
-    createdAt
-    imageUrl
-    link
+    thumbnailUrl
     authUser {
-      username
+      username,
+      profile {
+        firstName
+        lastName
+      }
+    }
+    tags {
+      name
+    }
+    category {
+      name
     }
   }
 }
@@ -30,17 +39,15 @@ const PostDetailsPage = () => {
   let params = useParams();
   let postId = (params.postId);
 
-  console.log(postId);
-
   const { loading, error, data } = useQuery(POST, { 
     variables: {
-      id: postId
+      postId: postId
     }
   });
 
   const gqlResult = () => {
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
+    if (error) return <p>{error.toString()}Error :(</p>;
 
     return (
       <PostDetailsComponent post={data.post} />

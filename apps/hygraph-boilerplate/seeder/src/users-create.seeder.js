@@ -45,8 +45,7 @@ mutation CreateProfileMutation($firstname: String!, $lastname: String!) {
    * Create a Users via promises
   */
   const createUsers = async (n = 20) => {
-    const promises = [];
-    for (let i=0; i < n;i++) {
+    for (let i = 0; i < n; i++) {
       const gender = generateValueBetweenMinAndMax(0, 1);
       const firstName = faker.person.firstName(gender);
       const lastName = faker.person.lastName(gender);
