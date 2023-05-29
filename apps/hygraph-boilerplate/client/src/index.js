@@ -12,11 +12,12 @@ import {
 
 // Custom compoments
 import App from './app';
+import * as AppRoutes from './app/routes';
 
 // Utilities
-import { CommunitiesPage, HomePage, PostDetailsPage, PostsPage } from './app/pages';
+import { CommunitiesPage, HomePage, PostDetailsPage, PostsPage, Signin, Signup } from './app/pages';
 import { AuthProvider, HygraphProvider } from './app/context';
-import { AdminLayout, PublicLayout, UserLayout } from './app/components/layout';
+import { AdminLayout, AuthLayout, PublicLayout, UserLayout } from './app/components/layout';
 
 ReactDOM.render(
   <HygraphProvider>
@@ -24,13 +25,18 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route element={<App />}>
-            <Route path="/" element={<PublicLayout />}>
+            <Route path={AppRoutes.LANDING} element={<PublicLayout />}>
               <Route index element={<HomePage />} />
-              <Route path="home" element={<Navigate to="/" replace={true} />} />
-              <Route path="posts" element={<PostsPage />} />  
-              <Route path="posts/:postId" element={<PostDetailsPage />} />
-              <Route path="communities" element={<CommunitiesPage />} /> 
-            </Route>            
+              <Route path={AppRoutes.HOME} element={<Navigate to="/" replace={true} />} />
+              <Route path={AppRoutes.POSTS} element={<PostsPage />} />  
+              <Route path={AppRoutes.POST_DETAILS} element={<PostDetailsPage />} />
+              <Route path={AppRoutes.COMMUNITIES} element={<CommunitiesPage />} /> 
+            </Route> 
+            <Route path="auth" element={<AuthLayout />}>
+              <Route index element ={<Navigate to={AppRoutes.AUTH_SIGN_IN} replace={true} />} />
+              <Route path={AppRoutes.AUTH_SIGN_IN} element ={<Signin />} />
+              <Route path={AppRoutes.AUTH_SIGN_UP} element ={<Signup />} />
+            </Route>           
             <Route path="user" element={<UserLayout />}>
               <Route index element ={<HomePage/>} />
               <Route path="profile" element ={<PostsPage/>} />
