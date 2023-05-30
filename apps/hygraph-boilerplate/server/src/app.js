@@ -97,16 +97,20 @@ app.use((err, req, res, next) => {
     },
   };
 
-  if (req.accepts('html')) {
-    res.render('error', body);
-  } else if (req.accepts('json')) {
-    res.json(body);
-  } else {
-    res.send('You have to accept application/json or text/html!');
-  }
+  res.format({
+    'application/json': () => {
+      res.json(body);
+    },
+    'text/html': () => {
+      res.render('error', body);
+    },
+    default: () => {
+      res.type('text/plain').send('You have to accept application/json or text/html!');
+    },
+  });
+
   next();
 });
-
 
 // Set the port used by the server
 const PORT = process.env.PORT || 8080;

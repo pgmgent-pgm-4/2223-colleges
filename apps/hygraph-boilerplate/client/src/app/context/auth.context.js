@@ -21,7 +21,7 @@ const AuthProvider = ({children}) => {
   const signInWithEmailAndPassword = async (email, password) => {
     try {
       console.log(email, password);
-      const response = await fetch('http://localhost:8080/api/login', {
+      const response = await fetch('/api/login', {
         mode: 'cors',
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -45,7 +45,7 @@ const AuthProvider = ({children}) => {
   const signOut = async () => {
     try {
       setCurrentUser(null); 
-      const response = await fetch('http://localhost:8080/api/logout', {
+      const response = await fetch('/api/logout', {
         mode: 'cors',
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

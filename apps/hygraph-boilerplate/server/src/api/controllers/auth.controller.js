@@ -36,7 +36,6 @@ const login = (req, res, next) => {
 
       return res.status(200).json(authenticated);
     } catch (error) {
-      console.log(error);
       return handleHTTPError(error, next);
     }
   })(req, res, next);
@@ -57,7 +56,6 @@ const signup = async (req, res, next) => {
     // Authenticate
     return login(req, res, next);
   } catch (error) {
-    console.log(error);
     return handleHTTPError(error, next);
   }
 };
@@ -72,11 +70,10 @@ const logout = (req, res, next) => {
           req.session = null;
         });
       });
-    };   
+    }
     return res.status(200).json(req.body);
   } catch (error) {
-    console.log(error);
-    handleHTTPError(error, next);
+    return handleHTTPError(error, next);
   }
 };
 
