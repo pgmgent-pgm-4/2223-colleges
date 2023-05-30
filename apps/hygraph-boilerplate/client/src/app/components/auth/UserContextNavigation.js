@@ -1,5 +1,5 @@
 import { NavLink as RRNavLink } from 'react-router-dom';
-import { DropdownItem, DropdownMenu, DropdownToggle, NavbarText, Nav, NavItem, NavLink, UncontrolledDropdown} from 'reactstrap';
+import { DropdownItem, DropdownMenu, DropdownToggle, NavbarText, Nav, NavItem, NavLink, UncontrolledDropdown, Button} from 'reactstrap';
 
 import * as routes from '../../routes';
 
@@ -24,14 +24,14 @@ const UserContextNavigation = () => {
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem>
-                Option 1
+                <NavLink tag={RRNavLink} to={routes.USER}>Dashboard</NavLink>
               </DropdownItem>
               <DropdownItem>
-                SLA
+                <NavLink tag={RRNavLink} to={routes.USER_PROFILE}>Profile</NavLink>
               </DropdownItem>
               <DropdownItem divider />
               <DropdownItem>
-                TOMAAT
+                <Button onClick={signOut}>Sign out</Button>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>

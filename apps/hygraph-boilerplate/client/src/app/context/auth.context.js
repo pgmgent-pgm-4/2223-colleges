@@ -1,12 +1,17 @@
+// Import external modules
 import { createContext, useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
-import settings from '../config/settings'
+// Import custom modules
+import settings from '../config/settings';
+import * as AppRoutes from '../routes';
 
 const AuthContext = createContext(null);
 const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({children}) => {
+  const navigate = useNavigate();
+
   const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem(settings.AUTH_KEY_LOCALSTORAGE)));
 
   useEffect(() => {
@@ -15,7 +20,9 @@ const AuthProvider = ({children}) => {
 
   const signInWithEmailAndPassword = async (email, password) => {
     try {
-      const response = await fetch('/api/login', {
+      console.log(email, password);
+      const response = await fetch('http://localhost:8080/api/login', {
+        mode: 'cors',
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -24,9 +31,12 @@ const AuthProvider = ({children}) => {
         })
       });
       const user = await response.json();      
+      console.log(user);
       if (user) {
         setCurrentUser(user);      
       }      
+      // Navigate to user dashboard page
+      navigate(AppRoutes.USER);
     } catch (error) {
       console.log(error);
     }    
@@ -35,12 +45,16 @@ const AuthProvider = ({children}) => {
   const signOut = async () => {
     try {
       setCurrentUser(null); 
-      const response = await fetch('/api/logout', {
+      const response = await fetch('http://localhost:8080/api/logout', {
+        mode: 'cors',
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(currentUser)
       });  
       const userLoggedOut = await response.json();
+      console.log('userLoggedOut');
+      // Navigate to sign in page
+      navigate(AppRoutes.AUTH_SIGN_IN);
     } catch (error) {
       console.log(error);
     } 

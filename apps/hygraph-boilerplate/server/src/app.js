@@ -31,14 +31,14 @@ https://www.npmjs.com/package/body-parser
 
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ 
-  extended: false 
+  extended: false,
 }));
 // Parse application/json
 app.use(bodyParser.json());
 // Set default view engine
 nunjucks.configure('views', {
   autoescape: true,
-  express: app
+  express: app,
 });
 app.set('view engine', 'html');
 // Serve static content
@@ -56,7 +56,11 @@ cors is a node.js package for providing a Connect/Express middleware that can be
 https://www.npmjs.com/package/cors
 */
 const corsOptions = {
-}
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
 app.use(cors(corsOptions));
 
 /*
@@ -93,7 +97,7 @@ app.use((err, req, res, next) => {
     },
   };
 
-  if (req.accepts('html')) {  
+  if (req.accepts('html')) {
     res.render('error', body);
   } else if (req.accepts('json')) {
     res.json(body);

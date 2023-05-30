@@ -1,8 +1,11 @@
+// Import external modules
 import passport from 'passport';
 import { Strategy } from 'passport-local';
 import { AwesomeGraphQLClient } from 'awesome-graphql-client';
 import fetch from 'node-fetch';
+import jwt from 'jsonwebtoken';
 
+// Import custom modules
 import settings from '../config/settings';
 import { HTTPError } from '../utils';
 
@@ -19,11 +22,11 @@ const localStrategy = () => {
   `;
 
   const client = new AwesomeGraphQLClient({
-    endpoint: `${settings.GRAPHCMS_CONTENT_API}`,
+    endpoint: `${settings.HYGRAPH_CONTENT_API}`,
     fetch,
     fetchOptions: {
       headers: {
-        Authorization: `Bearer ${settings.GRAPHCMS_ACCESS_TOKEN}`,
+        Authorization: `Bearer ${settings.HYGRAPH_ACCESS_TOKEN}`,
       },
     },
   });
@@ -34,7 +37,7 @@ const localStrategy = () => {
       passwordField: 'password',
     },
     async (username, password, done) => {
-      try {  
+      try {
         const { authUser } = await client.request(queryGetUserByUsername, { username });
 
         if (!authUser) {
@@ -45,7 +48,22 @@ const localStrategy = () => {
           throw new HTTPError('Incorrect Credentials', 404);
         }
 
-        done(null, authUser);
+        const userPayload = {
+          id: authUser.id,
+          username: authUser.username,
+          email: authUser.email,
+        };
+
+        const token = jwt.sign({ user: userPayload }, settings.JWT_SECRET, {
+          expiresIn: settings.JWT_EXPIRE,
+        });
+
+        const authenticated = {
+          ...userPayload,
+          token,
+        };
+
+        done(null, authenticated);
       } catch (error) {
         done(error);
       }

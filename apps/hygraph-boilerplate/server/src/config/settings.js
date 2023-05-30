@@ -12,8 +12,8 @@ const settings = {
   PORT: process.env.PORT || 8080,
   JWT_SECRET: process.env.JWT_SECRET,
   JWT_EXPIRE: process.env.JWT_EXPIRE || '24h',
-  GRAPHCMS_CONTENT_API: process.env.GRAPHCMS_CONTENT_API,
-  GRAPHCMS_ACCESS_TOKEN: process.env.GRAPHCMS_ACCESS_TOKEN,
+  HYGRAPH_CONTENT_API: process.env.HYGRAPH_CONTENT_API,
+  HYGRAPH_ACCESS_TOKEN: process.env.HYGRAPH_ACCESS_TOKEN,
 };
 
 export default settings;

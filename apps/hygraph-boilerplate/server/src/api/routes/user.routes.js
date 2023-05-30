@@ -12,7 +12,7 @@ const userRouter = Router();
 /*
 Routes
 */
-userRouter.get('/', userController.index);
+userRouter.post('/', userController.index);
 
 // Returns the API router
 export default userRouter;
