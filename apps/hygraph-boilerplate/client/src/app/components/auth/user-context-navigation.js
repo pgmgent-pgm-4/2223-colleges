@@ -1,8 +1,9 @@
+// Import external modules
 import { NavLink as RRNavLink } from 'react-router-dom';
 import { DropdownItem, DropdownMenu, DropdownToggle, NavbarText, Nav, NavItem, NavLink, UncontrolledDropdown, Button} from 'reactstrap';
 
+// Import custom modules
 import * as routes from '../../routes';
-
 import { useAuth } from '../../context/auth.context';
 
 const UserContextNavigation = () => {
@@ -20,7 +21,12 @@ const UserContextNavigation = () => {
               caret
               nav
             >
-              Options
+              {!!currentUser && 
+                <span className={`user`}>
+                  <span className={`user__avatar`}></span>
+                  <span className={`user__username`}>{currentUser.username}</span>
+                </span>
+              }
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem>

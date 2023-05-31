@@ -1,20 +1,9 @@
-import { gql, useQuery } from "@apollo/client";
-
+// Import external modules
+import { useQuery } from "@apollo/client";
 import { ListGroup, ListGroupItem } from 'reactstrap';
 
-const GET_ALL_COMMUNITIES = gql`
-query GetAllCommunities {
-  communities {
-    name
-    id
-    description
-    createdAt
-    authUser {
-      username
-    }
-  }
-}
-`;
+// Import custom modules
+import { GET_ALL_COMMUNITIES } from '../../graphql';
 
 const CommunitiesList = () => {
   const { loading, error, data } = useQuery(GET_ALL_COMMUNITIES);

@@ -1,24 +1,16 @@
+// Import external modules
 import {
   gql,
   useQuery,
 } from "@apollo/client";
 import { Spinner } from 'reactstrap';
 
-// Custom components
+// Import custom components
+import { GET_ALL_POSTS_SMALL } from '../graphql';
 import { PostsListComponent } from '../components/posts';
 
-// GraphQL queries
-const POSTS = gql`
-query GetPosts {
-  posts {
-    id
-    title
-  }
-}
-`;
-
 const PostsPage = () => {
-  const { loading, error, data } = useQuery(POSTS);
+  const { loading, error, data } = useQuery(GET_ALL_POSTS_SMALL);
 
   const gqlResult = () => {
     if (loading) return <Spinner
