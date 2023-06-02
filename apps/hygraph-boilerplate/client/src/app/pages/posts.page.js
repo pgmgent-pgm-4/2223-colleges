@@ -7,7 +7,7 @@ import { Spinner } from 'reactstrap';
 
 // Import custom components
 import { GET_ALL_POSTS_SMALL } from '../graphql';
-import { PostsListComponent } from '../components/posts';
+import { PostsListComponent, PostsListPagination, PostsListRelayCursor } from '../components/posts';
 
 const PostsPage = () => {
   const { loading, error, data } = useQuery(GET_ALL_POSTS_SMALL);
@@ -29,7 +29,9 @@ const PostsPage = () => {
 
   return (
     <>
+      <PostsListPagination />
       {gqlResult()}
+      <PostsListRelayCursor />
     </>
   )
 };

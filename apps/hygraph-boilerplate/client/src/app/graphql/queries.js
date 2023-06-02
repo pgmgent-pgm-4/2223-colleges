@@ -23,14 +23,31 @@ query GetAllPosts {
 }
 `;
 
-export const GET_ALL_POSTS_SMALL_WITHPAGINATION = gql`
-query GetPostsWithPagination($skip: Int = 10, $first: Int = 20) {
-  postsConnection(first: $first, skip: $skip) {
+export const GET_POSTS_WITH_RELAY_CURSOR = gql`
+query GetPostsWithRelayCursor($first: Int = 20, $after: String = null) {
+  postsConnectionRelayCursor: postsConnection(first: $first, after: $after) {
     pageInfo {
-      pageSize
+      hasNextPage 
+      endCursor  
+    }
+    edges {
+      node {
+        id
+        title
+      }
+    }
+  }
+}
+`;
+
+export const GET_POSTS_WITH_PAGINATION = gql`
+query GetPostsWithPagination($first: Int = 20, $skip: Int = 0) {
+  postsConnectionPagination: postsConnection(first: $first, skip: $skip) {
+    pageInfo {
       hasNextPage
-      hasPreviousPage
       endCursor
+      pageSize
+      hasPreviousPage
     }
     aggregate {
       count
