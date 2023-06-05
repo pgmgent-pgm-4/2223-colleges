@@ -77,6 +77,6 @@ const memberTypes = [
   /*
    * Create posts
   */
-  await createTeamMembers(56);
+  await createTeamMembers(12);
 
 })();
